@@ -1,0 +1,2949 @@
+<?xml version="1.0" encoding="utf-8"?>
+<helpItems xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" schema="maml" xmlns="http://msh">
+  <command:command>
+    <command:details>
+      <command:name>Backup-ARKVault</command:name>
+      <maml:description>
+        <maml:para>Backs up the Vault using the CyberArk PAReplicate utility.</maml:para>
+      </maml:description>
+      <command:verb>Backup</command:verb>
+      <command:noun>ARKVault</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Runs PAReplicate.exe on the Replicate server to back up the Vault: a full backup by default, or an incremental
+backup with Incremental.
+
+Equivalent to: PAReplicate \&lt;VaultFile\&gt; /LogonFromFile \&lt;LogonFile\&gt; \[/FullBackup\]
+
+Back up as the built-in Backup user, enabled with a password set from the PrivateArk Client, or another user with
+the CABACKUP user type.
+
+Only Safes that existed at the last full backup can be restored individually, so take a full backup regularly.
+Use Register-ARKBackupTask to schedule weekly incremental and full backups.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Backup-ARKVault</maml:name>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>LogonFile</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>VaultFile</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>BackupPoolName</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Incremental</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>WhatIf</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Confirm</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Backup-ARKVault</maml:name>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Credential</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">PSCredential</command:parameterValue>
+          <dev:type>
+            <maml:name>PSCredential</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>VaultFile</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>BackupPoolName</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Incremental</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>WhatIf</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Confirm</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>BackupPoolName</maml:name>
+        <maml:description>
+          <maml:para>The name of the backup pool to back up to.
+Restores from this backup must use the same name.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="cf">
+        <maml:name>Confirm</maml:name>
+        <maml:description>
+          <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+        </maml:description>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>Credential</maml:name>
+        <maml:description>
+          <maml:para>The Vault user and password.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">PSCredential</command:parameterValue>
+        <dev:type>
+          <maml:name>PSCredential</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>Incremental</maml:name>
+        <maml:description>
+          <maml:para>Runs an incremental backup.
+Without it, the backup is full, passed as /FullBackup.</maml:para>
+        </maml:description>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>LogonFile</maml:name>
+        <maml:description>
+          <maml:para>The user credentials file, passed as /LogonFromFile.</maml:para>
+          <maml:para>A credentials file restricted to the SYSTEM OS user, for a scheduled task, cannot be used from an interactive
+session.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>VaultFile</maml:name>
+        <maml:description>
+          <maml:para>The Vault parameter file.
+Defaults to Vault.ini in the PAReplicate.exe folder.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="wi">
+        <maml:name>WhatIf</maml:name>
+        <maml:description>
+          <maml:para>Shows what would happen if the cmdlet runs.
+The cmdlet is not run.</maml:para>
+        </maml:description>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+        </dev:type>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes />
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>DRJones.UtilityResult</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para>Requires PAReplicate.exe, located with Set-ARKConfiguration -UtilityPath.
+PAReplicate.exe runs with its own folder as the working directory.
+
+With Credential, the password is passed on the PAReplicate.exe command line and is visible to other processes on
+the machine while it runs.
+It is masked in debug output and error records.
+Use LogonFile to avoid this.
+
+A non-zero exit code from PAReplicate.exe is reported as an error.</maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- EXAMPLE 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```
+Backup-ARKVault -LogonFile 'C:\Creds\backup.cred'
+```</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Runs a full backup, using Vault.ini in the PAReplicate folder.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+      <command:example>
+        <maml:title>--------- EXAMPLE 2 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```
+Backup-ARKVault -LogonFile 'C:\Creds\backup.cred' -Incremental
+```</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Runs an incremental backup.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+      <command:example>
+        <maml:title>--------- EXAMPLE 3 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```
+Backup-ARKVault -Credential (Get-Credential Backup) -BackupPoolName DRPool
+```</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Runs a full backup to the DRPool backup pool, logging on with a password.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Get-ARKConfiguration</command:name>
+      <maml:description>
+        <maml:para>Gets the default folders used by DRJones.</maml:para>
+      </maml:description>
+      <command:verb>Get</command:verb>
+      <command:noun>ARKConfiguration</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Returns the folder containing the CyberArk Recover.exe and SafeRecover.exe utilities, and the default folder
+containing the recovery keys, as set with Set-ARKConfiguration.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-ARKConfiguration</maml:name>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters />
+    <command:inputTypes />
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>System.Management.Automation.PSCustomObject</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- EXAMPLE 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```
+Get-ARKConfiguration
+```</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Returns the configured UtilityPath and KeyPath.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Get-ARKVaultDatabaseReport</command:name>
+      <maml:description>
+        <maml:para>Runs a Vault database diagnostic report using CAVaultManager DiagnoseDBReport.</maml:para>
+      </maml:description>
+      <command:verb>Get</command:verb>
+      <command:noun>ARKVaultDatabaseReport</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Runs CAVaultManager.exe DiagnoseDBReport on the Vault server and returns the report in the utility output.
+
+Equivalent to: CAVaultManager DiagnoseDBReport
+
+Use to inspect the Vault database, for example after Restore-ARKVaultDatabase.
+
+The session must be elevated.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-ARKVaultDatabaseReport</maml:name>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters />
+    <command:inputTypes />
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>DRJones.UtilityResult</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para>Must be run from an elevated session; the command throws otherwise.
+
+Requires CAVaultManager.exe, located with Set-ARKConfiguration -UtilityPath.
+CAVaultManager.exe runs with its own folder as the working directory.
+
+A non-zero exit code from CAVaultManager.exe is reported as an error.</maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- EXAMPLE 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```
+Get-ARKVaultDatabaseReport
+```</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Runs the database diagnostic report and returns the result.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+      <command:example>
+        <maml:title>--------- EXAMPLE 2 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```
+(Get-ARKVaultDatabaseReport).StdOut | Set-Content -Path 'C:\Windows\Temp\diagnosedbreport.txt'
+```</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Saves the database diagnostic report to a file.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Get-ARKVaultParameter</command:name>
+      <maml:description>
+        <maml:para>Gets parameters from a CyberArk parameter file, such as DBParm.ini or Vault.ini.</maml:para>
+      </maml:description>
+      <command:verb>Get</command:verb>
+      <command:noun>ARKVaultParameter</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Reads a CyberArk parameter file and returns the parameters in it, with the section each belongs to.
+
+Lines starting with ; or # are treated as comments.
+Values are returned as written in the file, including any quotes.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Get-ARKVaultParameter</maml:name>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>Name</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="FullName">
+          <maml:name>Path</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Section</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="false" globbing="true" pipelineInput="false" position="1" aliases="none">
+        <maml:name>Name</maml:name>
+        <maml:description>
+          <maml:para>The parameter names to return.
+Wildcards are permitted.
+Defaults to all parameters.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String[]</command:parameterValue>
+        <dev:type>
+          <maml:name>String[]</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="Named" aliases="FullName">
+        <maml:name>Path</maml:name>
+        <maml:description>
+          <maml:para>The parameter file.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>Section</maml:name>
+        <maml:description>
+          <maml:para>Returns only the parameters in this section.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+        </dev:type>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>DRJones.VaultParameter</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para />
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- EXAMPLE 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```
+Get-ARKVaultParameter -Path 'C:\Program Files (x86)\PrivateArk\Server\Conf\DBParm.ini' -Name BackupFilesDeletion, RecoveryPrvKey
+```</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Returns the BackupFilesDeletion and RecoveryPrvKey parameters from DBParm.ini.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+      <command:example>
+        <maml:title>--------- EXAMPLE 2 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```
+Get-ARKVaultParameter -Path 'C:\Program Files (x86)\PrivateArk\Replicate\Vault.ini' -Name ADDRESS
+```</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Returns the Vault address that PARestore.exe connects to.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+      <command:example>
+        <maml:title>--------- EXAMPLE 3 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```
+Get-ARKVaultParameter -Path .\DBParm.ini -Section BACKUP
+```</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Returns every parameter in the BACKUP section.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Register-ARKBackupTask</command:name>
+      <maml:description>
+        <maml:para>Schedules weekly incremental and full Vault backups with the CyberArk PAReplicate utility.</maml:para>
+      </maml:description>
+      <command:verb>Register</command:verb>
+      <command:noun>ARKBackupTask</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Registers two scheduled tasks on the Replicate server that run PAReplicate.exe as SYSTEM, with its own folder as
+the working directory:
+
+- PAReplicate Incremental Backup: PAReplicate \&lt;VaultFile\&gt; /LogonFromFile \&lt;LogonFile\&gt;, every day except
+FullBackupDay.
+- PAReplicate Full Backup: PAReplicate \&lt;VaultFile\&gt; /LogonFromFile \&lt;LogonFile\&gt; /FullBackup, on FullBackupDay.
+
+Both tasks run at the same local time, and start as soon as possible after a missed start.
+Tasks with the same names in TaskPath are replaced.
+
+Create the credentials file for the Backup user with CreateCredFile.exe, restricted to PAReplicate running as
+SYSTEM:
+
+CreateCredFile.exe backup.cred Password /Username Backup /AppType CABACKUP /IpAddress /Hostname /ExePath
+"C:\Program Files (x86)\PrivateArk\Replicate\PAReplicate.exe" /OSUsername "NT AUTHORITY\SYSTEM" /EntropyFile
+/DPAPIMachineProtection /Password \&lt;password\&gt;</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Register-ARKBackupTask</maml:name>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>LogonFile</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>VaultFile</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>BackupPoolName</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>At</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">DateTime</command:parameterValue>
+          <dev:type>
+            <maml:name>DateTime</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>FullBackupDay</maml:name>
+          <maml:description />
+          <command:parameterValueGroup>
+            <command:parameterValue required="false" variableLength="false">Sunday</command:parameterValue>
+            <command:parameterValue required="false" variableLength="false">Monday</command:parameterValue>
+            <command:parameterValue required="false" variableLength="false">Tuesday</command:parameterValue>
+            <command:parameterValue required="false" variableLength="false">Wednesday</command:parameterValue>
+            <command:parameterValue required="false" variableLength="false">Thursday</command:parameterValue>
+            <command:parameterValue required="false" variableLength="false">Friday</command:parameterValue>
+            <command:parameterValue required="false" variableLength="false">Saturday</command:parameterValue>
+          </command:parameterValueGroup>
+          <command:parameterValue required="true" variableLength="false">DayOfWeek</command:parameterValue>
+          <dev:type>
+            <maml:name>DayOfWeek</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>TaskPath</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>WhatIf</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Confirm</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>At</maml:name>
+        <maml:description>
+          <maml:para>The local time of day both backups start.
+Defaults to 01:00.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">DateTime</command:parameterValue>
+        <dev:type>
+          <maml:name>DateTime</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>BackupPoolName</maml:name>
+        <maml:description>
+          <maml:para>The name of the backup pool to back up to.
+Restores from these backups must use the same name.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="cf">
+        <maml:name>Confirm</maml:name>
+        <maml:description>
+          <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+        </maml:description>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>FullBackupDay</maml:name>
+        <maml:description>
+          <maml:para>The day of the week for the full backup.
+The incremental backup runs on every other day.
+Defaults to Sunday.</maml:para>
+        </maml:description>
+        <command:parameterValueGroup>
+          <command:parameterValue required="false" variableLength="false">Sunday</command:parameterValue>
+          <command:parameterValue required="false" variableLength="false">Monday</command:parameterValue>
+          <command:parameterValue required="false" variableLength="false">Tuesday</command:parameterValue>
+          <command:parameterValue required="false" variableLength="false">Wednesday</command:parameterValue>
+          <command:parameterValue required="false" variableLength="false">Thursday</command:parameterValue>
+          <command:parameterValue required="false" variableLength="false">Friday</command:parameterValue>
+          <command:parameterValue required="false" variableLength="false">Saturday</command:parameterValue>
+        </command:parameterValueGroup>
+        <command:parameterValue required="true" variableLength="true">DayOfWeek</command:parameterValue>
+        <dev:type>
+          <maml:name>DayOfWeek</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>LogonFile</maml:name>
+        <maml:description>
+          <maml:para>The user credentials file, passed as /LogonFromFile.
+Relative paths are resolved against the current location.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>TaskPath</maml:name>
+        <maml:description>
+          <maml:para>The Task Scheduler folder for the tasks, starting and ending with a backslash.
+Defaults to \DRJones\.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>VaultFile</maml:name>
+        <maml:description>
+          <maml:para>The Vault parameter file.
+Defaults to Vault.ini in the PAReplicate.exe folder.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="wi">
+        <maml:name>WhatIf</maml:name>
+        <maml:description>
+          <maml:para>Shows what would happen if the cmdlet runs.
+The cmdlet is not run.</maml:para>
+        </maml:description>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+        </dev:type>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes />
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>Microsoft.Management.Infrastructure.CimInstance#MSFT_ScheduledTask</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para>Must run in an elevated session.
+
+Requires PAReplicate.exe, located with Set-ARKConfiguration -UtilityPath.
+
+The task results are recorded in the Task Scheduler history; PAReplicate.exe output is not captured.</maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- EXAMPLE 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```
+Register-ARKBackupTask -LogonFile 'C:\Program Files (x86)\PrivateArk\Replicate\backup.cred'
+```</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Schedules an incremental backup Monday to Saturday and a full backup on Sunday, at 01:00.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+      <command:example>
+        <maml:title>--------- EXAMPLE 2 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```
+Register-ARKBackupTask -LogonFile 'C:\Program Files (x86)\PrivateArk\Replicate\backup.cred' -FullBackupDay Saturday -At '22:30'
+```</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Schedules the full backup on Saturday and the incremental backup on the other days, at 22:30.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Repair-ARKVaultBackup</command:name>
+      <maml:description>
+        <maml:para>Recovers restored full Vault backup files using CAVaultManager RecoverBackupFiles.</maml:para>
+      </maml:description>
+      <command:verb>Repair</command:verb>
+      <command:noun>ARKVaultBackup</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Runs CAVaultManager.exe RecoverBackupFiles to access the backup files in the Restored Safes folder with the
+Vault Recovery Private Key, and re-encrypt them with a new backup key, when the original backup key cannot be used.
+
+Equivalent to: CAVaultManager RecoverBackupFiles /BackupPoolName \&lt;BackupPoolName\&gt;
+
+The Recovery Private Key is read from the location set in the RecoveryPrvKey parameter of DBParm.ini.
+
+Run after Restore-ARKVault with the Vault stopped, and before Restore-ARKVaultDatabase.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Repair-ARKVaultBackup</maml:name>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>BackupPoolName</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>WhatIf</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Confirm</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>BackupPoolName</maml:name>
+        <maml:description>
+          <maml:para>The name of the backup pool the backup files belong to.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="cf">
+        <maml:name>Confirm</maml:name>
+        <maml:description>
+          <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+        </maml:description>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="wi">
+        <maml:name>WhatIf</maml:name>
+        <maml:description>
+          <maml:para>Shows what would happen if the cmdlet runs.
+The cmdlet is not run.</maml:para>
+        </maml:description>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+        </dev:type>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes />
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>DRJones.UtilityResult</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para>Prompts for confirmation by default.
+
+Requires the Recovery Private Key from the Master CD, set as RecoveryPrvKey in DBParm.ini.
+When the restore is complete, remove the Recovery Private Key from the Vault, and from any Safe or folder used to
+copy it there.
+
+Must be run from an elevated session; the command throws otherwise.
+
+Requires CAVaultManager.exe, located with Set-ARKConfiguration -UtilityPath.
+CAVaultManager.exe runs with its own folder as the working directory.
+
+A non-zero exit code from CAVaultManager.exe is reported as an error.</maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- EXAMPLE 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```
+Repair-ARKVaultBackup
+```</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Recovers the backup files in the Restored Safes folder, after confirmation.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+      <command:example>
+        <maml:title>--------- EXAMPLE 2 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```
+Repair-ARKVaultBackup -BackupPoolName PoolA -Confirm:$false
+```</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Recovers the backup files of the PoolA backup pool without prompting.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Restore-ARKFile</command:name>
+      <maml:description>
+        <maml:para>Decrypts Vault data files using the CyberArk Recover utility.</maml:para>
+      </maml:description>
+      <command:verb>Restore</command:verb>
+      <command:noun>ARKFile</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Runs Recover.exe to decrypt one or more encrypted Vault data files into an output folder, using the recovery keys
+in the key folder.
+
+Equivalent to: Recover \&lt;Path\&gt; \&lt;OutputPath\&gt; \&lt;KeyPath\&gt; \[\&lt;SafeRecoveryKeyPath\&gt;\]
+
+The output folder is created if it does not exist.
+
+Relative paths are resolved against the current PowerShell location.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Restore-ARKFile</maml:name>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="FullName">
+          <maml:name>Path</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="none">
+          <maml:name>OutputPath</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="2" aliases="none">
+          <maml:name>KeyPath</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="3" aliases="none">
+          <maml:name>SafeRecoveryKeyPath</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>WhatIf</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Confirm</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="cf">
+        <maml:name>Confirm</maml:name>
+        <maml:description>
+          <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+        </maml:description>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="3" aliases="none">
+        <maml:name>KeyPath</maml:name>
+        <maml:description>
+          <maml:para>The folder containing the recovery keys.
+Defaults to the KeyPath set with Set-ARKConfiguration.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="2" aliases="none">
+        <maml:name>OutputPath</maml:name>
+        <maml:description>
+          <maml:para>The folder to write the decrypted files to.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="true" pipelineInput="true (ByPropertyName)" position="1" aliases="FullName">
+        <maml:name>Path</maml:name>
+        <maml:description>
+          <maml:para>The encrypted data file to decrypt.
+Wildcards are passed to Recover.exe, which expands them.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="4" aliases="none">
+        <maml:name>SafeRecoveryKeyPath</maml:name>
+        <maml:description>
+          <maml:para>The RSA-4096 Safe recovery key file, for Safes encrypted with a Safe recovery key.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="wi">
+        <maml:name>WhatIf</maml:name>
+        <maml:description>
+          <maml:para>Shows what would happen if the cmdlet runs.
+The cmdlet is not run.</maml:para>
+        </maml:description>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+        </dev:type>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes />
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>DRJones.RecoveryResult</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para>Requires Recover.exe, located with Set-ARKConfiguration -UtilityPath.
+Recover.exe runs with its own folder as the working directory.
+
+Recover.exe can run from any folder containing it and the DLLs, openssl.cnf and icudt74l.dat supplied with it in
+the Vault Server folder; these differ between Vault versions.
+Without openssl.cnf, Recover.exe fails with no output.
+The Visual C++ redistributable it requires must be installed.
+A missing DLL is reported as an error.
+
+A non-zero exit code from Recover.exe is reported as an error.</maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- EXAMPLE 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```
+Restore-ARKFile -Path 'C:\Temp\my_data_file\*' -OutputPath 'D:\Restored' -KeyPath 'C:\Keys'
+```</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Decrypts all files in C:\Temp\my_data_file into D:\Restored using the recovery keys in C:\Keys.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+      <command:example>
+        <maml:title>--------- EXAMPLE 2 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```
+Restore-ARKFile -Path 'C:\Temp\my_data_file\*' -OutputPath 'D:\Restored' -SafeRecoveryKeyPath 'C:\Temp\saferecover.key'
+```</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Decrypts the files using the default key folder set with Set-ARKConfiguration and an RSA-4096 Safe recovery key.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+      <command:example>
+        <maml:title>--------- EXAMPLE 3 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```
+Get-ChildItem -Path 'C:\Temp\my_data_file' -File | Restore-ARKFile -OutputPath 'D:\Restored'
+```</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Decrypts each file found by Get-ChildItem, running Recover.exe once per file.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Restore-ARKRecordingSafe</command:name>
+      <maml:description>
+        <maml:para>Restores a recordings Safe from backup into a new Safe using the CyberArk PARestore utility.</maml:para>
+      </maml:description>
+      <command:verb>Restore</command:verb>
+      <command:noun>ARKRecordingSafe</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Runs PARestore.exe to restore a recordings Safe from the backup files into a new Safe in the Vault.
+
+Equivalent to: PARestore \&lt;VaultFile\&gt; \&lt;User\&gt;/\&lt;Password\&gt; /RestoreRecordings /RestoreSafe \&lt;Safe\&gt;
+/TargetSafe \&lt;TargetSafe\&gt; /Owners \&lt;Owners\&gt; /Retention \&lt;Retention\&gt;
+
+A Safe with the same name as the recordings Safe does not need to exist in the Vault.
+The target Safe must not exist; PARestore creates it, with the given owners and retention period.
+
+The restoring user cannot be added as an owner of the restored Safe.
+
+Recordings restored this way may not play in the PVWA (seen on v12.6 and v14.0).
+If they are needed, restore the whole Vault, with Restore-ARKVault, to an isolated server instead.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Restore-ARKRecordingSafe</maml:name>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="SafeName">
+          <maml:name>Safe</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="none">
+          <maml:name>TargetSafe</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Credential</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">PSCredential</command:parameterValue>
+          <dev:type>
+            <maml:name>PSCredential</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Owners</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Retention</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>VaultFile</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>BackupPoolName</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>WhatIf</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Confirm</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Restore-ARKRecordingSafe</maml:name>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="SafeName">
+          <maml:name>Safe</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="none">
+          <maml:name>TargetSafe</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>LogonFile</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Owners</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Retention</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+          <dev:type>
+            <maml:name>Int32</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>VaultFile</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>BackupPoolName</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>WhatIf</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Confirm</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="Named" aliases="none">
+        <maml:name>BackupPoolName</maml:name>
+        <maml:description>
+          <maml:para>The name of the backup pool the backup files belong to.
+Must match the backup pool name used by PAReplicate.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="cf">
+        <maml:name>Confirm</maml:name>
+        <maml:description>
+          <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+        </maml:description>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>Credential</maml:name>
+        <maml:description>
+          <maml:para>The Vault user and password.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">PSCredential</command:parameterValue>
+        <dev:type>
+          <maml:name>PSCredential</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>LogonFile</maml:name>
+        <maml:description>
+          <maml:para>The user credentials file, passed as /LogonFromFile.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="Named" aliases="none">
+        <maml:name>Owners</maml:name>
+        <maml:description>
+          <maml:para>The users and groups to add as owners of the restored Safe.
+Defaults to Auditors.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String[]</command:parameterValue>
+        <dev:type>
+          <maml:name>String[]</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="Named" aliases="none">
+        <maml:name>Retention</maml:name>
+        <maml:description>
+          <maml:para>The number of days, from 1 to 90, to keep the restored recordings.
+Defaults to 7.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">Int32</command:parameterValue>
+        <dev:type>
+          <maml:name>Int32</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="1" aliases="SafeName">
+        <maml:name>Safe</maml:name>
+        <maml:description>
+          <maml:para>The name of the recordings Safe to restore.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="2" aliases="none">
+        <maml:name>TargetSafe</maml:name>
+        <maml:description>
+          <maml:para>The name of the new Safe to restore into.
+The Safe must not already exist.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>VaultFile</maml:name>
+        <maml:description>
+          <maml:para>The Vault parameter file.
+Defaults to Vault.ini in the PARestore.exe folder.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="wi">
+        <maml:name>WhatIf</maml:name>
+        <maml:description>
+          <maml:para>Shows what would happen if the cmdlet runs.
+The cmdlet is not run.</maml:para>
+        </maml:description>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+        </dev:type>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes />
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>DRJones.UtilityResult</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para>Requires PARestore.exe, located with Set-ARKConfiguration -UtilityPath.
+PARestore.exe runs with its own folder as the working directory.
+
+With Credential, the password is passed on the PARestore.exe command line and is visible to other processes on the
+machine while it runs.
+It is masked in debug output and error records.
+Use LogonFile to avoid this.
+
+PARestore.exe runs in the current console, so its prompts, such as the warning about the supported PVWA version, are
+shown and answered there.
+Its output is not captured: StdOut and StdErr of the result are empty.
+Run the command from a console host, such as pwsh or the VS Code terminal.
+
+A non-zero exit code from PARestore.exe is reported as an error.
+
+PARestore.exe locks Vault database tables while it runs, so it can take a long time and Vault logons can fail or
+time out until it finishes.
+Run it when Vault activity is low.</maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- EXAMPLE 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```
+Restore-ARKRecordingSafe -Safe PSMRecordings -TargetSafe PSMRecordings_R -Credential (Get-Credential Backup)
+```</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Restores the PSMRecordings Safe into a new Safe named PSMRecordings_R, owned by Auditors with a 7 day retention.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+      <command:example>
+        <maml:title>--------- EXAMPLE 2 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```
+Restore-ARKRecordingSafe PSMRecordings PSMRecordings_R -Owners Auditors, 'Vault Admins' -Retention 30 -Credential $Cred
+```</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Restores the recordings Safe with Auditors and Vault Admins as owners, keeping recordings for 30 days.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Restore-ARKSafe</command:name>
+      <maml:description>
+        <maml:para>Decrypts the contents of a Vault Safe using the CyberArk SafeRecover utility.</maml:para>
+      </maml:description>
+      <command:verb>Restore</command:verb>
+      <command:noun>ARKSafe</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Runs SafeRecover.exe to decrypt the contents of one or more Safes into an output folder, using the master key in the
+key folder.
+SafeRecover.exe reads the Safe data from the SafesDirectory set in tsparm.ini on the Vault server.
+
+Equivalent to: SafeRecover \&lt;Safe\&gt; \&lt;OutputPath\&gt; \&lt;KeyPath\&gt;
+
+The output folder is created if it does not exist.
+
+Relative paths are resolved against the current PowerShell location.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Restore-ARKSafe</maml:name>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="SafeName">
+          <maml:name>Safe</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="none">
+          <maml:name>OutputPath</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="2" aliases="none">
+          <maml:name>KeyPath</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>WhatIf</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Confirm</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="cf">
+        <maml:name>Confirm</maml:name>
+        <maml:description>
+          <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+        </maml:description>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="3" aliases="none">
+        <maml:name>KeyPath</maml:name>
+        <maml:description>
+          <maml:para>The folder containing the master key.
+Defaults to the KeyPath set with Set-ARKConfiguration.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="2" aliases="none">
+        <maml:name>OutputPath</maml:name>
+        <maml:description>
+          <maml:para>The folder to write the decrypted Safe contents to.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="true" pipelineInput="true (ByPropertyName)" position="1" aliases="SafeName">
+        <maml:name>Safe</maml:name>
+        <maml:description>
+          <maml:para>The name of the Safe to decrypt.
+Wildcards are passed to SafeRecover.exe, which expands them.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="wi">
+        <maml:name>WhatIf</maml:name>
+        <maml:description>
+          <maml:para>Shows what would happen if the cmdlet runs.
+The cmdlet is not run.</maml:para>
+        </maml:description>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+        </dev:type>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes />
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>DRJones.RecoveryResult</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para>Must be run from an elevated session; the command throws otherwise.
+
+Requires SafeRecover.exe, located with Set-ARKConfiguration -UtilityPath.
+SafeRecover.exe runs with its own folder as the working directory.
+
+SafeRecover.exe reads the Vault Server registry settings, so it must run on a Vault server; elsewhere it fails with
+ITASE001S System error: RegOpenKey_1 failed.
+The PrivateArk Server service must be stopped; the command throws if it is running.
+The PrivateArk Database service must be running.
+
+A non-zero exit code from SafeRecover.exe is reported as an error.</maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- EXAMPLE 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```
+Restore-ARKSafe -Safe Research -OutputPath 'C:\Research' -KeyPath 'C:\MasterKey'
+```</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Decrypts the contents of the Research Safe into C:\Research using the master key in C:\MasterKey.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+      <command:example>
+        <maml:title>--------- EXAMPLE 2 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```
+Restore-ARKSafe -Safe 'Fin*' -OutputPath 'D:\Restored'
+```</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Decrypts all Safes with names starting Fin, using the default key folder set with Set-ARKConfiguration.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+      <command:example>
+        <maml:title>--------- EXAMPLE 3 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```
+Import-Csv -Path .\Safes.csv | Restore-ARKSafe
+```</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Decrypts each Safe listed in a CSV file with SafeName and OutputPath columns.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Restore-ARKVault</command:name>
+      <maml:description>
+        <maml:para>Copies full Vault backup files to the Vault using the CyberArk PARestore utility.</maml:para>
+      </maml:description>
+      <command:verb>Restore</command:verb>
+      <command:noun>ARKVault</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Runs PARestore.exe to copy the backup files of the entire Vault to the Restored Safes folder on the Vault server,
+as the first step of a full Vault restore.
+
+Equivalent to: PARestore \&lt;VaultFile\&gt; \&lt;User\&gt;/\&lt;Password\&gt; /FullVaultRestore
+
+All data in the destination Vault is overwritten.
+The destination Vault must have been installed with the same keys as the Vault that was backed up.
+
+The full Vault restore procedure is:
+
+1. Start the destination Vault, with no PADR services running, and enable a user with the Restore All Safes
+authorization, such as Operator.
+2. On the destination Vault, Set-ARKVaultParameter in DBParm.ini: BackupFilesDeletion=No, and RecoveryPrvKey
+pointing to the Recovery Private Key on the Master CD.
+3. On the Replicate server, Set-ARKVaultParameter in Vault.ini: ADDRESS of the destination Vault.
+4. On the Replicate server, Restore-ARKVault to copy the backup files, with -FromRestored if an archived copy of
+the backup files was restored to the local Restored Safes folder.
+5. Stop the destination Vault.
+6. On the destination Vault, Repair-ARKVaultBackup to recover the backup files.
+7. Restore-ARKVaultDatabase.
+8. Reset BackupFilesDeletion in DBParm.ini (default Yes,24,1,5,7d), and remove the Recovery Private Key from the
+Vault.
+9. Start the Vault.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Restore-ARKVault</maml:name>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Credential</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">PSCredential</command:parameterValue>
+          <dev:type>
+            <maml:name>PSCredential</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>VaultFile</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>BackupPoolName</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>FromRestored</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>WhatIf</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Confirm</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Restore-ARKVault</maml:name>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>LogonFile</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>VaultFile</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>BackupPoolName</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>FromRestored</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>WhatIf</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Confirm</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>BackupPoolName</maml:name>
+        <maml:description>
+          <maml:para>The name of the backup pool the backup files belong to.
+Must match the backup pool name used by PAReplicate.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="cf">
+        <maml:name>Confirm</maml:name>
+        <maml:description>
+          <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+        </maml:description>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>Credential</maml:name>
+        <maml:description>
+          <maml:para>The Vault user and password.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">PSCredential</command:parameterValue>
+        <dev:type>
+          <maml:name>PSCredential</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>FromRestored</maml:name>
+        <maml:description>
+          <maml:para>Copies the backup files from the Restored Safes folder on this machine, next to the SafesDirectory set in tsparm.ini,
+instead of from the Safes folder.
+Use it when an archived copy of the PAReplicate backup files has been restored there.
+Passed as /FromRestored.</maml:para>
+        </maml:description>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>LogonFile</maml:name>
+        <maml:description>
+          <maml:para>The user credentials file, passed as /LogonFromFile.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>VaultFile</maml:name>
+        <maml:description>
+          <maml:para>The Vault parameter file.
+Defaults to Vault.ini in the PARestore.exe folder.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="wi">
+        <maml:name>WhatIf</maml:name>
+        <maml:description>
+          <maml:para>Shows what would happen if the cmdlet runs.
+The cmdlet is not run.</maml:para>
+        </maml:description>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+        </dev:type>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes />
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>DRJones.UtilityResult</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para>Prompts for confirmation by default.
+
+Must be run from an elevated session; the command throws otherwise.
+
+The upload can take a long time, and the PARestore.exe output is returned only when it completes.
+Monitor the size of the Restored Safes folder on the destination Vault to follow progress.
+
+Requires PARestore.exe, located with Set-ARKConfiguration -UtilityPath.
+PARestore.exe runs with its own folder as the working directory.
+
+With Credential, the password is passed on the PARestore.exe command line and is visible to other processes on the
+machine while it runs.
+It is masked in debug output and error records.
+Use LogonFile to avoid this.
+
+A non-zero exit code from PARestore.exe is reported as an error.</maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- EXAMPLE 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```
+Restore-ARKVault -Credential (Get-Credential Operator)
+```</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Copies the full Vault backup files to the Restored Safes folder, using Vault.ini in the PARestore folder.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+      <command:example>
+        <maml:title>--------- EXAMPLE 2 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```
+Restore-ARKVault -LogonFile 'C:\Creds\Operator.cred' -FromRestored -Confirm:$false
+```</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Logs on with a credentials file and copies the archived backup files restored to the local Restored Safes
+folder, without prompting.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Restore-ARKVaultDatabase</command:name>
+      <maml:description>
+        <maml:para>Restores the Vault database from the Restored Safes folder using CAVaultManager RestoreDB.</maml:para>
+      </maml:description>
+      <command:verb>Restore</command:verb>
+      <command:noun>ARKVaultDatabase</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Runs CAVaultManager.exe RestoreDB to restore the Vault database from the backup files in the Restored Safes
+folder, as part of a full Vault restore.
+
+Equivalent to: CAVaultManager RestoreDB /BackupPoolName \&lt;BackupPoolName\&gt; /NoSynchronize /Force
+
+After the database is restored, CAVaultManager synchronizes it with the restored Safe files unless NoSynchronize
+is specified.
+
+The Vault must be stopped, and the session must be elevated.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Restore-ARKVaultDatabase</maml:name>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>BackupPoolName</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>NoSynchronize</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>WhatIf</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Confirm</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>BackupPoolName</maml:name>
+        <maml:description>
+          <maml:para>The name of the backup pool the backup files belong to.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="cf">
+        <maml:name>Confirm</maml:name>
+        <maml:description>
+          <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+        </maml:description>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>NoSynchronize</maml:name>
+        <maml:description>
+          <maml:para>Skips synchronizing the restored database with the restored Safe files.
+Use Sync-ARKVaultDatabase to synchronize later.</maml:para>
+        </maml:description>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="wi">
+        <maml:name>WhatIf</maml:name>
+        <maml:description>
+          <maml:para>Shows what would happen if the cmdlet runs.
+The cmdlet is not run.</maml:para>
+        </maml:description>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+        </dev:type>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes />
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>DRJones.UtilityResult</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para>Prompts for confirmation by default; CAVaultManager.exe is always run with /Force so it does not prompt.
+
+Must be run from an elevated session; the command throws otherwise.
+
+Requires CAVaultManager.exe, located with Set-ARKConfiguration -UtilityPath.
+CAVaultManager.exe runs with its own folder as the working directory.
+
+A non-zero exit code from CAVaultManager.exe is reported as an error.</maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- EXAMPLE 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```
+Restore-ARKVaultDatabase
+```</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Restores the Vault database and synchronizes it with the restored Safe files, after confirmation.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+      <command:example>
+        <maml:title>--------- EXAMPLE 2 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```
+Restore-ARKVaultDatabase -BackupPoolName PoolA -NoSynchronize -Confirm:$false
+```</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Restores the Vault database from the PoolA backup pool without synchronizing, without prompting.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Restore-ARKVaultSafe</command:name>
+      <maml:description>
+        <maml:para>Restores a Safe from backup into a new Safe using the CyberArk PARestore utility.</maml:para>
+      </maml:description>
+      <command:verb>Restore</command:verb>
+      <command:noun>ARKVaultSafe</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Runs PARestore.exe to restore a single Safe from the backup files into a new Safe in the Vault.
+
+Equivalent to: PARestore \&lt;VaultFile\&gt; \&lt;User\&gt;/\&lt;Password\&gt; /RestoreSafe \&lt;Safe\&gt; /TargetSafe \&lt;TargetSafe\&gt;
+
+A Safe with the same name as the Safe being restored must exist in the Vault.
+If the original Safe was deleted, create an empty Safe with the same name, with the same owners as the original.
+The target Safe must not exist; PARestore creates it, with the owners of the Safe with the same name.
+Backed-up owners that are not owners of that Safe are removed from the target Safe and reported as ITATS658W
+warnings; if every owner is removed, only the Master user can access the target Safe.
+
+The restoring user needs the Restore All Safes Vault authorization, typically the Operator user, or the Backup Safe
+authorization in the Safe being restored.
+It must be an owner of the Safe with the same name, but cannot be an owner of the restored Safe, so Administrator
+cannot be used.
+A user created to run PARestore must have the CABACKUP user type, which needs a CABACKUP license.
+
+Only Safes that existed at the last full backup can be restored.
+A Safe created since then, held only in incremental backups, cannot be restored individually: restore the full Vault
+to an isolated server, take a full backup there, and restore the Safe from that backup.
+
+To restore from an older backup, point SafesDirectory in tsparm.ini in the PARestore.exe folder at a folder holding
+the complete Metadata folder and the Data folder of each Safe to restore, all from the same backup.
+Revert tsparm.ini before the next PAReplicate backup runs.
+
+Dependencies of restored accounts (Windows Server, Scheduled Task, IIS Application, Windows Registry, COM+ Application,
+IIS Anonymous User) are not linked to their accounts and show as empty lines in the PVWA.
+Add them again from the PVWA, then remove the original dependency files from the Safe with the PrivateArk Client.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Restore-ARKVaultSafe</maml:name>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="SafeName">
+          <maml:name>Safe</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="none">
+          <maml:name>TargetSafe</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Credential</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">PSCredential</command:parameterValue>
+          <dev:type>
+            <maml:name>PSCredential</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>VaultFile</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>BackupPoolName</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>DataOnly</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>MetadataOnly</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>LoadOnly</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>WhatIf</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Confirm</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+      </command:syntaxItem>
+      <command:syntaxItem>
+        <maml:name>Restore-ARKVaultSafe</maml:name>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="SafeName">
+          <maml:name>Safe</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="none">
+          <maml:name>TargetSafe</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>LogonFile</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>VaultFile</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>BackupPoolName</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>DataOnly</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>MetadataOnly</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>LoadOnly</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>WhatIf</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Confirm</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="Named" aliases="none">
+        <maml:name>BackupPoolName</maml:name>
+        <maml:description>
+          <maml:para>The name of the backup pool the backup files belong to.
+Must match the backup pool name used by PAReplicate.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="cf">
+        <maml:name>Confirm</maml:name>
+        <maml:description>
+          <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+        </maml:description>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>Credential</maml:name>
+        <maml:description>
+          <maml:para>The Vault user and password.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">PSCredential</command:parameterValue>
+        <dev:type>
+          <maml:name>PSCredential</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>DataOnly</maml:name>
+        <maml:description>
+          <maml:para>Restores only the Safe data files, into a new target Safe.
+The Vault metadata must already have been restored by an earlier restore from the same backup, for example of
+another Safe.
+A DataOnly restore into the target Safe of a MetadataOnly restore fails with ITATS654E.
+Cannot be used with MetadataOnly.</maml:para>
+        </maml:description>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>LoadOnly</maml:name>
+        <maml:description>
+          <maml:para>Restores the Safe to the Vault from the files already in the Restored Safes folder on the Vault server.
+Use after copying the complete Metadata folder and the Data folder of the Safe there, from a third-party backup or
+an older PAReplicate backup.</maml:para>
+        </maml:description>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>LogonFile</maml:name>
+        <maml:description>
+          <maml:para>The user credentials file, passed as /LogonFromFile.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>MetadataOnly</maml:name>
+        <maml:description>
+          <maml:para>Restores only the Safe metadata, without the data files.
+The restored files are reported missing (ITATS850W) and their records kept in the Safe.
+Cannot be used with DataOnly.</maml:para>
+        </maml:description>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="1" aliases="SafeName">
+        <maml:name>Safe</maml:name>
+        <maml:description>
+          <maml:para>The name of the Safe to restore.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="2" aliases="none">
+        <maml:name>TargetSafe</maml:name>
+        <maml:description>
+          <maml:para>The name of the new Safe to restore into.
+The Safe must not already exist.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>VaultFile</maml:name>
+        <maml:description>
+          <maml:para>The Vault parameter file.
+Defaults to Vault.ini in the PARestore.exe folder.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="wi">
+        <maml:name>WhatIf</maml:name>
+        <maml:description>
+          <maml:para>Shows what would happen if the cmdlet runs.
+The cmdlet is not run.</maml:para>
+        </maml:description>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+        </dev:type>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes />
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>DRJones.UtilityResult</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para>Requires PARestore.exe, located with Set-ARKConfiguration -UtilityPath.
+PARestore.exe runs with its own folder as the working directory.
+
+With Credential, the password is passed on the PARestore.exe command line and is visible to other processes on the
+machine while it runs.
+It is masked in debug output and error records.
+Use LogonFile to avoid this.
+
+A non-zero exit code from PARestore.exe is reported as an error.
+Each ITATS658W line in the PARestore.exe output is also written as a warning.
+
+PARestore.exe locks Vault database tables while it runs, so it can take a long time and Vault logons can fail or
+time out until it finishes.
+Run it when Vault activity is low.</maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- EXAMPLE 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```
+Restore-ARKVaultSafe -Safe Banners -TargetSafe Banners_R -Credential (Get-Credential Backup)
+```</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Restores the Banners Safe into a new Safe named Banners_R, using Vault.ini in the PARestore folder.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+      <command:example>
+        <maml:title>--------- EXAMPLE 2 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```
+Restore-ARKVaultSafe Banners Banners_R -LogonFile 'C:\Creds\Backup.cred' -VaultFile 'C:\PrivateArk\Server\Vault.ini'
+```</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Restores the Banners Safe, logging on with a credentials file and a specific Vault parameter file.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+      <command:example>
+        <maml:title>--------- EXAMPLE 3 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```
+Restore-ARKVaultSafe -Safe Vines -TargetSafe Vines_R -Credential $Cred -DataOnly
+```</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Restores only the data files of the Vines Safe, after an earlier restore from the same backup restored the metadata.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+      <command:example>
+        <maml:title>--------- EXAMPLE 4 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```
+Restore-ARKVaultSafe -Safe Banners -TargetSafe Banners_R -LogonFile 'C:\Creds\Operator.cred' -LoadOnly
+```</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Restores a Safe from files copied manually, for example from a third-party backup: copy the complete Metadata folder
+and the Data folder of the Safe, unrenamed, into the Restored Safes folder on the Vault server first.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Set-ARKConfiguration</command:name>
+      <maml:description>
+        <maml:para>Sets the default folders used by DRJones.</maml:para>
+      </maml:description>
+      <command:verb>Set</command:verb>
+      <command:noun>ARKConfiguration</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Sets the folders containing the CyberArk recovery utilities (Recover.exe, SafeRecover.exe, PARestore.exe and
+CAVaultManager.exe), and the default folder containing the recovery keys.
+
+When several utility folders are set, each utility is run from the first folder that contains it.
+
+The configuration is saved to DRJonesConfiguration.xml in the user's home folder and loaded when the module is
+imported.
+
+Only the values provided are changed; any existing value of a parameter not provided is kept.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Set-ARKConfiguration</maml:name>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>UtilityPath</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String[]</command:parameterValue>
+          <dev:type>
+            <maml:name>String[]</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="none">
+          <maml:name>KeyPath</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>WhatIf</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Confirm</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="cf">
+        <maml:name>Confirm</maml:name>
+        <maml:description>
+          <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+        </maml:description>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="2" aliases="none">
+        <maml:name>KeyPath</maml:name>
+        <maml:description>
+          <maml:para>The default folder containing the recovery keys, used when -KeyPath is not provided to Restore-ARKFile or
+Restore-ARKSafe.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="1" aliases="none">
+        <maml:name>UtilityPath</maml:name>
+        <maml:description>
+          <maml:para>The folders containing the recovery utilities, searched in order.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String[]</command:parameterValue>
+        <dev:type>
+          <maml:name>String[]</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="wi">
+        <maml:name>WhatIf</maml:name>
+        <maml:description>
+          <maml:para>Shows what would happen if the cmdlet runs.
+The cmdlet is not run.</maml:para>
+        </maml:description>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+        </dev:type>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes />
+    <command:returnValues />
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para>Both folders must exist.</maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- EXAMPLE 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```
+Set-ARKConfiguration -UtilityPath 'C:\Program Files (x86)\PrivateArk\Server' -KeyPath 'D:\RecoveryKeys'
+```</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Sets the utility folder and the default recovery key folder.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+      <command:example>
+        <maml:title>--------- EXAMPLE 2 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```
+Set-ARKConfiguration -KeyPath 'E:\MasterKey'
+```</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Changes the default recovery key folder, keeping the configured utility folder.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+      <command:example>
+        <maml:title>--------- EXAMPLE 3 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```
+Set-ARKConfiguration -UtilityPath 'C:\Program Files (x86)\PrivateArk\Replicate', 'C:\Program Files (x86)\PrivateArk\Server'
+```</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Sets the Replicate folder (PARestore.exe) and the Vault Server folder (CAVaultManager.exe) as utility folders.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Set-ARKVaultParameter</command:name>
+      <maml:description>
+        <maml:para>Sets a parameter in a CyberArk parameter file, such as DBParm.ini or Vault.ini.</maml:para>
+      </maml:description>
+      <command:verb>Set</command:verb>
+      <command:noun>ARKVaultParameter</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Changes the value of a parameter in a CyberArk parameter file, keeping the rest of the file unchanged.
+
+If the parameter already exists, its value is changed wherever it is in the file.
+If it does not exist, it is added to the end of the section given in Section, creating the section if needed.
+In a file without sections, a new parameter is added to the end of the file.
+
+Use to prepare the Vault for a full Vault restore, and to reset it afterwards.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Set-ARKVaultParameter</maml:name>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>Name</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="none">
+          <maml:name>Value</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="FullName">
+          <maml:name>Path</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Section</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>WhatIf</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Confirm</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="cf">
+        <maml:name>Confirm</maml:name>
+        <maml:description>
+          <maml:para>Prompts you for confirmation before running the cmdlet.</maml:para>
+        </maml:description>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1" aliases="none">
+        <maml:name>Name</maml:name>
+        <maml:description>
+          <maml:para>The parameter name.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="Named" aliases="FullName">
+        <maml:name>Path</maml:name>
+        <maml:description>
+          <maml:para>The parameter file.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>Section</maml:name>
+        <maml:description>
+          <maml:para>The section to add the parameter to, if it is not already in the file.
+Required to add a parameter to a file with sections.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="2" aliases="none">
+        <maml:name>Value</maml:name>
+        <maml:description>
+          <maml:para>The parameter value, written as given.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="wi">
+        <maml:name>WhatIf</maml:name>
+        <maml:description>
+          <maml:para>Shows what would happen if the cmdlet runs.
+The cmdlet is not run.</maml:para>
+        </maml:description>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+        </dev:type>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes>
+      <command:inputType>
+        <dev:type>
+          <maml:name>System.String</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:inputType>
+    </command:inputTypes>
+    <command:returnValues />
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para>The file keeps its encoding; lines are written with CRLF line endings.
+
+The Vault reads DBParm.ini when it starts; restart the Vault for changes to take effect.</maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- EXAMPLE 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```
+$DBParm = 'C:\Program Files (x86)\PrivateArk\Server\Conf\DBParm.ini'
+Set-ARKVaultParameter -Path $DBParm -Name BackupFilesDeletion -Value No -Section BACKUP
+Set-ARKVaultParameter -Path $DBParm -Name RecoveryPrvKey -Value 'D:\recprv.key' -Section MAIN
+```</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Prepares DBParm.ini for a full Vault restore: keeps the restored backup files, and points to the Recovery Private
+Key on the Master CD.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+      <command:example>
+        <maml:title>--------- EXAMPLE 2 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```
+Set-ARKVaultParameter -Path $DBParm -Name BackupFilesDeletion -Value 'Yes,24,1,5,7d'
+```</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Resets BackupFilesDeletion to its default after a full Vault restore.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+      <command:example>
+        <maml:title>--------- EXAMPLE 3 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```
+Set-ARKVaultParameter -Path 'C:\Program Files (x86)\PrivateArk\Replicate\Vault.ini' -Name ADDRESS -Value 10.0.0.5
+```</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Points PARestore.exe at the destination Vault.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+  <command:command>
+    <command:details>
+      <command:name>Sync-ARKVaultDatabase</command:name>
+      <maml:description>
+        <maml:para>Synchronizes the Vault database with the restored Safe files using CAVaultManager SynchronizeDB.</maml:para>
+      </maml:description>
+      <command:verb>Sync</command:verb>
+      <command:noun>ARKVaultDatabase</command:noun>
+    </command:details>
+    <maml:description>
+      <maml:para>Runs CAVaultManager.exe SynchronizeDB to synchronize the restored Vault metadata with the files and quotas in the
+Safes folder, for example after Restore-ARKVaultDatabase -NoSynchronize.
+
+Equivalent to: CAVaultManager SynchronizeDB /SafePattern \&lt;SafePattern\&gt; /FilesSyncOnly /QuotaSyncOnly /Update
+/Force
+
+Without Update, the synchronization is only simulated and the differences are reported in the output.
+With Update, the database is changed, after confirmation.</maml:para>
+    </maml:description>
+    <command:syntax>
+      <command:syntaxItem>
+        <maml:name>Sync-ARKVaultDatabase</maml:name>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="0" aliases="none">
+          <maml:name>SafePattern</maml:name>
+          <maml:description />
+          <command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+          <dev:type>
+            <maml:name>String</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>FilesSyncOnly</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>QuotaSyncOnly</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Update</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>WhatIf</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+        <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named" aliases="none">
+          <maml:name>Confirm</maml:name>
+          <maml:description />
+          <dev:type>
+            <maml:name>System.Management.Automation.SwitchParameter</maml:name>
+          </dev:type>
+        </command:parameter>
+      </command:syntaxItem>
+    </command:syntax>
+    <command:parameters>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="cf">
+        <maml:name>Confirm</maml:name>
+        <maml:description>
+          <maml:para>Prompts you for confirmation before running the cmdlet with Update.</maml:para>
+        </maml:description>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>FilesSyncOnly</maml:name>
+        <maml:description>
+          <maml:para>Synchronizes only the files in the Safes folder with the restored metadata.</maml:para>
+        </maml:description>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>QuotaSyncOnly</maml:name>
+        <maml:description>
+          <maml:para>Synchronizes only the quotas in the Safes folder with the restored metadata.</maml:para>
+        </maml:description>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="true" pipelineInput="false" position="1" aliases="none">
+        <maml:name>SafePattern</maml:name>
+        <maml:description>
+          <maml:para>The Safes to synchronize, as a name or wildcard pattern.
+Defaults to all Safes.</maml:para>
+        </maml:description>
+        <command:parameterValue required="true" variableLength="true">String</command:parameterValue>
+        <dev:type>
+          <maml:name>String</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="none">
+        <maml:name>Update</maml:name>
+        <maml:description>
+          <maml:para>Updates the database.
+Without Update, the synchronization is only simulated.</maml:para>
+        </maml:description>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+        </dev:type>
+      </command:parameter>
+      <command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="Named" aliases="wi">
+        <maml:name>WhatIf</maml:name>
+        <maml:description>
+          <maml:para>Shows what would happen if the cmdlet runs with Update.
+The cmdlet is not run.</maml:para>
+        </maml:description>
+        <dev:type>
+          <maml:name>SwitchParameter</maml:name>
+        </dev:type>
+      </command:parameter>
+    </command:parameters>
+    <command:inputTypes />
+    <command:returnValues>
+      <command:returnValue>
+        <dev:type>
+          <maml:name>DRJones.UtilityResult</maml:name>
+        </dev:type>
+        <maml:description>
+          <maml:para />
+        </maml:description>
+      </command:returnValue>
+    </command:returnValues>
+    <maml:alertSet>
+      <maml:alert>
+        <maml:para>With Update, prompts for confirmation by default; CAVaultManager.exe is always run with /Force so it does not
+prompt.
+
+Requires CAVaultManager.exe, located with Set-ARKConfiguration -UtilityPath.
+CAVaultManager.exe runs with its own folder as the working directory.
+
+A non-zero exit code from CAVaultManager.exe is reported as an error.</maml:para>
+      </maml:alert>
+    </maml:alertSet>
+    <command:examples>
+      <command:example>
+        <maml:title>--------- EXAMPLE 1 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```
+Sync-ARKVaultDatabase
+```</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Simulates synchronizing all Safes, reporting the differences without changing the database.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+      <command:example>
+        <maml:title>--------- EXAMPLE 2 ---------</maml:title>
+        <maml:introduction>
+          <maml:para>```
+Sync-ARKVaultDatabase -SafePattern 'Fin*' -FilesSyncOnly -Update
+```</maml:para>
+          <maml:para>&#x80;</maml:para>
+          <maml:para>Synchronizes the files of Safes with names starting Fin with the restored metadata, after confirmation.</maml:para>
+        </maml:introduction>
+        <dev:code />
+        <dev:remarks />
+      </command:example>
+    </command:examples>
+    <command:relatedLinks />
+  </command:command>
+</helpItems>
