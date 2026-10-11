@@ -4,6 +4,10 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+- N/A
+
+## [0.1.0] - 2026-10-11
+
 ### Added
 
 - Initial release.
@@ -20,3 +24,4 @@ All notable changes to this project will be documented in this file.
 - `Sync-ARKVaultDatabase`: synchronize the Vault database with `CAVaultManager.exe`.
 - `Get-ARKVaultDatabaseReport`: run a Vault database diagnostic report with `CAVaultManager.exe`.
 - `Get-ARKVaultParameter` / `Set-ARKVaultParameter`: read and change Vault parameter files such as `DBParm.ini` and `Vault.ini`.
+
